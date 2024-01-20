@@ -1,12 +1,13 @@
-import express from 'express';
-const app = express();
-const HOSTNAME = "127.0.0.1";
-const PORT = 5000;
+import app from './app';
+import mongoose from 'mongoose';
 
-app.get("/", (req, res) => {
-    res.send("Welcome")
+const PORT = process.env.PORT || 5000;
+
+mongoose.connect(process.env.MONGO_URL!)
+.then(() => {
+    console.log("mongodb connected")
+    app.listen(PORT, () => {
+        console.log(`server running on http://${process.env.HOST}:${PORT}`);
+    });
 })
-
-app.listen(PORT, () => {
-    console.log(`server running on http://${HOSTNAME}:${PORT}`);
-});
+.catch(console.error)
