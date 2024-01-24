@@ -6,7 +6,8 @@ import mongoose from "mongoose"
 export const getItems: RequestHandler = async (req, res, next) => {
     try {
         const notes = await Item.find().exec()
-        res.status(200).json(notes)
+        // res.status(200).json(notes)
+        res.render('index', {path : "GET /"})
     } catch (error) {
         next(error)
     }
@@ -23,7 +24,8 @@ export const getItem: RequestHandler = async (req, res, next) => {
         if(!item) {
             throw createHttpError(404, "Item not found")
         }
-        res.status(200).json(item)
+        // res.status(200).json(item)
+        res.render('index', {path : "GET /:id"})
     } catch (error) {
         next(error)
     }
@@ -45,7 +47,8 @@ export const createItem: RequestHandler<unknown, unknown, CreateItemBody, unknow
             throw createHttpError(400, "title cannot be empty")
         }
         const newItem = await Item.create(itemToBeSaved)
-        res.status(201).json(newItem)
+        // res.status(201).json(newItem)
+        res.render('index', {path : "POST /"})
     } catch (error) {
         next(error)
     }
@@ -86,7 +89,8 @@ export const updateItem: RequestHandler<UpdateItemParams, unknown, UpdateItemBod
         item.description = itemToBeUpdated.description
         
         const newItem = await item.save()
-        res.status(200).json(newItem)
+        // res.status(200).json(newItem)
+        res.render('index', {path : "PATCH /:id"})
     } catch (error) {
         next(error)
     }
@@ -105,7 +109,8 @@ export const deleteItem: RequestHandler = async (req, res, next) => {
         }
 
         await item.deleteOne().exec()
-        res.status(204).json("item deleted")
+        // res.status(204).json("item deleted")
+        res.render('index', {path : "DELETE /:id"})
     } catch (error) {
         next(error)
     }
