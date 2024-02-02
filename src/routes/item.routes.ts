@@ -1,12 +1,13 @@
 import express from 'express'
 import * as ItemController from '../controllers/item.controller'
+import { verifyToken } from '../middleware/authJwt'
 
 const router = express.Router()
 
-router.get("/", ItemController.getItems)
-router.get("/:id", ItemController.getItem)
-router.delete("/:id", ItemController.deleteItem)
-router.post("/", ItemController.createItem)
-router.patch("/:id", ItemController.updateItem)
+router.get("/",[verifyToken], ItemController.getItems)
+router.get("/:id",[verifyToken], ItemController.getItem)
+router.delete("/:id",[verifyToken], ItemController.deleteItem)
+router.post("/",[verifyToken], ItemController.createItem)
+router.patch("/:id",[verifyToken], ItemController.updateItem)
 
 export default router;

@@ -1,14 +1,24 @@
 import express, { NextFunction, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import itemRoutes from './routes/item.routes'
+import authRoutes from './routes/auth.routes'
 import createHttpError, {isHttpError} from 'http-errors';
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 const app = express();
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+app.use(cookieParser())
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
+app.use("/api/auth", authRoutes)
 app.use("/api/items", itemRoutes)
 
 app.use((req, res, next) => {

@@ -1,13 +1,20 @@
-import { RequestHandler } from "express"
+import { Request, RequestHandler } from "express"
 import Item from "../models/item"
 import createHttpError from "http-errors"
 import mongoose from "mongoose"
 
-export const getItems: RequestHandler = async (req, res, next) => {
+interface ExtendedRequest extends Request {
+    id? : string;
+}
+
+export const getItems: RequestHandler = async (req : ExtendedRequest, res, next) => {
     try {
+        const userId = req.id;
         const notes = await Item.find().exec()
-        // res.status(200).json(notes)
-        res.render('index', {path : "GET /"})
+        res.status(200).render('index', {
+            notes,
+            userId
+        })
     } catch (error) {
         next(error)
     }
@@ -24,8 +31,8 @@ export const getItem: RequestHandler = async (req, res, next) => {
         if(!item) {
             throw createHttpError(404, "Item not found")
         }
-        // res.status(200).json(item)
-        res.render('index', {path : "GET /:id"})
+        res.status(200).json(item)
+        // res.render('index', {path : "GET /:id"})
     } catch (error) {
         next(error)
     }
@@ -47,15 +54,15 @@ export const createItem: RequestHandler<unknown, unknown, CreateItemBody, unknow
             throw createHttpError(400, "title cannot be empty")
         }
         const newItem = await Item.create(itemToBeSaved)
-        // res.status(201).json(newItem)
-        res.render('index', {path : "POST /"})
+        res.status(201).json(newItem)
+        // res.render('index', {path : "POST /"})
     } catch (error) {
         next(error)
     }
 }
 
 interface UpdateItemParams {
-    id : string
+    id?: string
 }
 
 interface UpdateItemBody {
@@ -63,8 +70,9 @@ interface UpdateItemBody {
     description? : string
 }
 
-export const updateItem: RequestHandler<UpdateItemParams, unknown, UpdateItemBody, unknown> = async (req, res, next) => {
-    const id = req.params.id
+export const updateItem: RequestHandler<unknown, unknown, UpdateItemBody, unknown> = async (req, res, next) => {
+    const params = req.params as UpdateItemParams
+    const id = params.id;
     const itemToBeUpdated = {
         title : req.body.title,
         description : req.body.description
@@ -89,8 +97,8 @@ export const updateItem: RequestHandler<UpdateItemParams, unknown, UpdateItemBod
         item.description = itemToBeUpdated.description
         
         const newItem = await item.save()
-        // res.status(200).json(newItem)
-        res.render('index', {path : "PATCH /:id"})
+        res.status(200).json(newItem)
+        // res.render('index', {path : "PATCH /:id"})
     } catch (error) {
         next(error)
     }
@@ -109,8 +117,8 @@ export const deleteItem: RequestHandler = async (req, res, next) => {
         }
 
         await item.deleteOne().exec()
-        // res.status(204).json("item deleted")
-        res.render('index', {path : "DELETE /:id"})
+        res.status(204).json("item deleted")
+        // res.render('index', {path : "DELETE /:id"})
     } catch (error) {
         next(error)
     }
