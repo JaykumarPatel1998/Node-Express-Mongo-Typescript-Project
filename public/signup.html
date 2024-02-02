@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            width: 40%;
+            background-color: rgb(204, 203, 201);
+            padding: 2rem;
+            margin: 1rem;
+            margin-inline: auto;
+        }
+        #title {
+            text-align: center;
+        }
+        .content {
+            font-size: 2rem;
+            padding: 1rem;
+        }
+        #submit {
+            text-align: center;
+        }
+        #button {
+            padding: 0.6rem;
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- username , email, password -->
+    <form action="/api/auth/signup" method="post">
+        <h1 id="title">
+            New member sign up!!
+        </h1>
+        <div class="content">
+            <label for="username">Username :</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div class="content">
+            <label for="email">Email :</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div class="content">
+            <label for="password">Password :</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <div id="submit">
+            <input id="button" type="submit" value="Register">
+        </div>
+        <div class="content">
+            Already have an account? <a href="/login.html">login</a>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,13 +1,20 @@
-import { RequestHandler } from "express"
+import { Request, RequestHandler } from "express"
 import Item from "../models/item"
 import createHttpError from "http-errors"
 import mongoose from "mongoose"
 
-export const getItems: RequestHandler = async (req, res, next) => {
+interface ExtendedRequest extends Request {
+    id? : string;
+}
+
+export const getItems: RequestHandler = async (req : ExtendedRequest, res, next) => {
     try {
+        const userId = req.id;
         const notes = await Item.find().exec()
-        res.status(200).json(notes)
-        // res.render('index', {path : "GET /"})
+        res.status(200).render('index', {
+            notes,
+            userId
+        })
     } catch (error) {
         next(error)
     }
@@ -55,7 +62,7 @@ export const createItem: RequestHandler<unknown, unknown, CreateItemBody, unknow
 }
 
 interface UpdateItemParams {
-    id : string
+    id?: string
 }
 
 interface UpdateItemBody {
@@ -63,8 +70,9 @@ interface UpdateItemBody {
     description? : string
 }
 
-export const updateItem: RequestHandler<UpdateItemParams, unknown, UpdateItemBody, unknown> = async (req, res, next) => {
-    const id = req.params.id
+export const updateItem: RequestHandler<unknown, unknown, UpdateItemBody, unknown> = async (req, res, next) => {
+    const params = req.params as UpdateItemParams
+    const id = params.id;
     const itemToBeUpdated = {
         title : req.body.title,
         description : req.body.description

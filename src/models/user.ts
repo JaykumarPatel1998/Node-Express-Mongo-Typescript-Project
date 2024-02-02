@@ -1,4 +1,4 @@
-import { InferSchemaType, Schema, model } from "mongoose";
+import mongoose, {InferSchemaType, Schema } from "mongoose";
 
 //boiler plate item schema
 const userSchema = new Schema({
@@ -26,5 +26,6 @@ const userSchema = new Schema({
 })
 
 type User = InferSchemaType<typeof userSchema>
+const UserModel = mongoose.model<User>("User", userSchema)
 
-export default model<User>("User", userSchema)
+export default UserModel

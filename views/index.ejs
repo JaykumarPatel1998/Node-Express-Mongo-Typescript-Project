@@ -1,2 +1,13 @@
 <h1>Welcome to EJS</h1>
-<p>You are at: <%= path %></p>
+<h1>You have been redirected here</h1>
+<p>UserId: <%= userId %></p>
+
+<% for(var i=0; i < notes.length; i++) { %>
+    <br>
+    <p>title: <%= notes[i].title %></p>
+    <p>description: <%= notes[i].description %></p>
+    <p>updatedAt: <%= notes[i].updatedAt %></p>
+    <hr>
+<% } %>
+
+<a href="/api/auth/signout">Sign out</a>

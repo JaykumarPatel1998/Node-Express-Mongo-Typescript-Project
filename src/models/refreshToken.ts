@@ -1,11 +1,8 @@
-import mongoose, { InferSchemaType, Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 import { v4 as uuidv4 } from 'uuid'
 
 interface User {
-  username?: string,
-  email?: string,
-  password?: string,
-  _id: string
+  _id?: mongoose.Types.ObjectId
 }
 
 const refreshTokenSchema = new Schema({
@@ -16,11 +13,13 @@ const refreshTokenSchema = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+    required: true
   },
   expiryDate: {
     type: Date,
     required: true
   },
+  
 },
   {
     methods: {
@@ -29,7 +28,7 @@ const refreshTokenSchema = new Schema({
       }
     },
     statics: {
-      async createToken(user: User) {
+      async createToken(user : User) {
         const expiredAt = new Date();
 
         expiredAt.setSeconds(
@@ -44,8 +43,6 @@ const refreshTokenSchema = new Schema({
           expiryDate: expiredAt.getTime(),
         });
 
-        console.log(_object);
-
         const refreshToken = await _object.save();
 
         return refreshToken.token;
@@ -54,6 +51,6 @@ const refreshTokenSchema = new Schema({
   }
 );
 
-type RefreshToken = InferSchemaType<typeof refreshTokenSchema>
+// type RefreshToken = InferSchemaType<typeof refreshTokenSchema>
 
-export default model<RefreshToken>("RefreshToken", refreshTokenSchema)
+export default model("RefreshToken", refreshTokenSchema)
