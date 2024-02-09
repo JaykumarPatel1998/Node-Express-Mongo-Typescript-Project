@@ -6,7 +6,6 @@ interface ExtendedRequest extends Request {
 }
 export const verifyToken: RequestHandler = (req : ExtendedRequest, res, next) => {
     const {token, refreshToken} = req.cookies
-    console.log('I am in verify middleware')
 
     if (!token || !refreshToken) {
         res.redirect('/signup.html')
@@ -25,9 +24,7 @@ export const verifyToken: RequestHandler = (req : ExtendedRequest, res, next) =>
             }
             if (decoded) {
             const decodedPayload = decoded as JwtPayload
-            console.log(decodedPayload)
             req.id = decodedPayload.sub
-            console.log(req.id)
             }
             next();
         });

@@ -1,0 +1,32 @@
+body {
+    padding: 2rem;
+    background-color: rgb(255, 255, 255);
+}
+
+.container-drop {
+    max-width: 40%;
+    padding: 1rem;
+    border: 1px solid black;
+}
+
+.container-drop-modal {
+    padding: 1rem;
+    border: 1px solid black;
+}
+
+.button-links:hover img {
+    scale: 1.25;
+}
+
+.modal {
+    z-index: inherit;
+}
+
+.form {
+    padding: 1rem;
+    text-align: end;
+}
+
+.submit-button  {
+    margin: 1rem;
+}

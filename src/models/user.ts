@@ -1,6 +1,22 @@
 import mongoose, {InferSchemaType, Schema } from "mongoose";
 
-//boiler plate item schema
+
+//message schema
+const messageSchema = new Schema({
+    message : {
+        type: String
+    },
+    read: {
+        type: Boolean,
+        default: false
+    },
+    from : {
+        type: String,
+        default : "Application"
+    }
+})
+
+//user schema
 const userSchema = new Schema({
     username :{
         type : String,
@@ -14,6 +30,7 @@ const userSchema = new Schema({
         type : String,
         required : true
     },
+    messageArray : [messageSchema]
 }, {
     timestamps : true,
     virtuals : {
