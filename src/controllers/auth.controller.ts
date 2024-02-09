@@ -10,6 +10,9 @@ export const signup: RequestHandler = async (req, res, next) => {
         username: req.body.username,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 8),
+        messageArray : [{
+            message : "Welcome to the Application!"
+        }]
     });
 
     try {
@@ -55,7 +58,7 @@ export const signin: RequestHandler = async (req, res, next) => {
             sameSite: "lax"
         })
 
-        res.status(200).redirect('/api/items')
+        res.status(200).redirect('/api/files')
         return
 
     } catch (error) {
@@ -65,7 +68,6 @@ export const signin: RequestHandler = async (req, res, next) => {
 
 export const refreshToken: RequestHandler =  async (req, res, next) => {
     const { refreshToken : requestToken } = req.cookies;
-    console.log('refresh token api has been called');
     if (requestToken == null) {
         res.redirect('login.html')
         return
@@ -99,7 +101,7 @@ export const refreshToken: RequestHandler =  async (req, res, next) => {
                 sameSite: "lax"
             })
     
-            res.status(200).redirect('/api/items')
+            res.status(200).redirect('/api/files')
             return
         }
 
