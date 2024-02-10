@@ -1,5 +1,15 @@
 # Secure File
-![OIG3](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/23567e80-4f22-4c17-9dfd-ce7904ffe855)
+
+login and signup
+<img width="960" alt="image" src="https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/f0c6190b-6623-49f9-be38-b15bcb1fcb3c">
+
+home
+<img width="959" alt="index" src="https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/7a9c499d-ebd1-497a-b713-938bf8d9a04a">
+
+notifications
+<img width="960" alt="notifications" src="https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/c0dda9b6-5e0f-4b19-a9f6-af1ea4ac030b">
+
+
 Storage and Sharing Web App
 
 ## Overview
