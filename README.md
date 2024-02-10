@@ -1,4 +1,6 @@
-# Secure File Storage and Sharing Web App
+# Secure File
+![OIG3](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/23567e80-4f22-4c17-9dfd-ce7904ffe855)
+Storage and Sharing Web App
 
 ## Overview
 I've developed a web application that provides secure storage and sharing of files in the cloud. Users can upload files, securely store them, and share access with others. Here are the key features:
