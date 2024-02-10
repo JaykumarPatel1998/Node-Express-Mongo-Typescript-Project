@@ -1,7 +1,7 @@
 # Secure File
 
 login and signup
-<img width="960" alt="image" src="https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/f0c6190b-6623-49f9-be38-b15bcb1fcb3c">
+![Web_Photo_Editor](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/5b3c63fb-c975-4bb8-aec6-716889d539f7)
 
 home
 <img width="959" alt="index" src="https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/7a9c499d-ebd1-497a-b713-938bf8d9a04a">
