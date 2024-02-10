@@ -35,27 +35,6 @@ export const getFiles: RequestHandler = async (req: ExtendedRequest, res, next) 
     }
 }
 
-// req file send by multer middleware
-// {
-//     "fieldname": "file",
-//     "originalname": "readme.md",
-//     "encoding": "7bit",
-//     "mimetype": "application/octet-stream",
-//     "size": 165,
-//     "bucket": "new-bucket-file-to-access",
-//     "key": "65c17d4a10ea9f1cd1c59ed5/readme.md",
-//     "acl": "private",
-//     "contentType": "application/octet-stream",
-//     "contentDisposition": null,
-//     "contentEncoding": null,
-//     "storageClass": "STANDARD",
-//     "serverSideEncryption": null,
-//     "metadata": {
-//     "fieldname": "file"
-//     },
-//     "location": "https://new-bucket-file-to-access.s3.us-east-1.amazonaws.com/65c17d4a10ea9f1cd1c59ed5/readme.md",
-//     "etag": "\"a566097b43a8f68e5e4b9c44c6aaac74\""
-//     }
 export const uploadFile: RequestHandler = async (req: ExtendedRequest, res, next) => {
 
     try {
