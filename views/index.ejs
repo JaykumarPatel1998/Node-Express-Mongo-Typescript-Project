@@ -11,7 +11,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="deleteModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Action needed</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -29,18 +29,18 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="shareModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="shareModalLabel">Action needed</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                            <form class="row g-3" action="/api/files" method="get">
+                            <form id="shareForm" class="row g-3" action="/api/files" method="get">
                                 <div class="col-auto">
-                                  <label for="staticEmail2" class="visually-hidden">Email</label>
-                                  <input type="text" class="form-control" placeholder="username">
+                                  <label for="username" class="visually-hidden">username</label>
+                                  <input type="text" name="username" class="form-control" placeholder="username">
                                 </div>
                                 <div class="col-auto">
-                                  <label for="inputPassword2" class="visually-hidden">Password</label>
-                                  <input type="number" class="form-control" placeholder="expiry (in minutes)">
+                                  <label for="expiry" class="visually-hidden">expiry</label>
+                                  <input type="number" name="expiry" class="form-control" placeholder="expiry (in minutes)">
                                 </div>
                                 <div class="col-auto">
                                   <button type="submit" class="btn btn-primary mb-3">Share</button>
@@ -52,10 +52,10 @@
     </div>
 
     <div class="header">
-        <h1>Welcome to Cloud Drive</h1>
+        <h1>Welcome to Secure Drive</h1>
         <a href="/api/auth/signout">
             <button type="button" class="btn btn-primary">
-                Sign out <span class="badge text-bg-primary">🚩</span>
+                Sign out
               </button>
         </a>
     
@@ -97,7 +97,7 @@
                          class="button-links delete" href="/api/files/<%= file._id %>"><img src="/assets/delete.png"
                                 alt="delete"></a></td>
                     <td><a type="button" data-bs-toggle="modal" data-bs-target="#shareModal" class="button-links share"
-                            href="/api/files/<%= file._id %>"><img src="/assets/share.png" alt="share"></a></td>
+                            href="/api/files/<%= file._id %>" onclick="changeUrl()"><img src="/assets/share.png" alt="share"></a></td>
                 </tr>
                 <% }) %>
         </tbody>
@@ -109,7 +109,7 @@
                 upload file here
             </h1>
             <div>
-                <input class="form-control form-control-lg" name="file" id="formFileLg" type="file">
+                <input class="form-control form-control-lg" name="file" id="formFileLg" type="file" required>
                 <input type="submit" class="submit-button btn btn-primary" value="upload">
             </div>
         </div>

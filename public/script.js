@@ -2,6 +2,8 @@ const fileName = document.getElementById("fileName")
 const namespace = document.getElementById("namespace")
 const parent = document.getElementById("parent")
 const folderForm = document.getElementById("folderForm")
+const shareForm = document.getElementById("shareForm")
+const linkshare = document.getElementsByClassName("share")[0]
 
 const deleteLink = document.querySelector('a.delete');
 deleteLink?.addEventListener('click', (event) => {
@@ -18,4 +20,9 @@ if (toastTrigger) {
   toastTrigger.addEventListener('click', () => {
     toastBootstrap.show()
   })
+}
+
+function changeUrl() {
+  shareForm.setAttribute('action', linkshare.getAttribute('href'))
+  shareForm.setAttribute('method', "POST")
 }

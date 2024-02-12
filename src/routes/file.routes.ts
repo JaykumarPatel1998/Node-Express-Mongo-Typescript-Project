@@ -8,5 +8,6 @@ const router = express.Router()
 router.get("/",[verifyToken], FileController.getFiles)
 router.post("/",[verifyToken, upload.single("file")], FileController.uploadFile)
 router.delete("/:fileId",[verifyToken], FileController.deleteFromStorageandDB)
+router.post("/:fileId",[verifyToken], FileController.shareFile)
 
 export default router;
