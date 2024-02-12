@@ -10,9 +10,9 @@ const s3 = new S3Client({})
 interface MulterRequest extends Request { id: string }
 
 const upload = multer({
-  fileFilter: async (req, file, cb) => {
+  fileFilter: async (req: MulterRequest, file, cb) => {
     const fileName = file.originalname
-    const fileByFileName = await File.findOne({ fileName: fileName }).exec()
+    const fileByFileName = await File.findOne({ fileName: fileName, userId : req.id }).exec()
 
     if (fileByFileName) {
       cb(createHttpError(400, "File already exists! delete the existing file if you wanna upload another with same name"))

@@ -1,6 +1,10 @@
 body {
+    background: linear-gradient(rgba(157, 157, 157, 0.2), rgba(255, 255, 255, 0.4), rgba(157, 157, 157, 0.2), rgba(255, 255, 255, 0.4)) no-repeat;
+    background-position: center center;
+    background-size: cover;
+    font-size: 16px;
+    margin: 0;
     padding: 2rem;
-    background-color: rgb(255, 255, 255);
 }
 
 .container-drop {

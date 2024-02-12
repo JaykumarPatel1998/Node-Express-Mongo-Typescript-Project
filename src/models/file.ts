@@ -3,8 +3,7 @@ import mongoose, { Schema, model } from "mongoose";
 const fileSchema = new Schema({
   fileName: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
