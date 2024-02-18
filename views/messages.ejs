@@ -6,16 +6,17 @@
 
 <body>
     <div class="header">
-        <h1>Welcome to Cloud Drive</h1>
+        <img id="logo" src="/assets/logo.png" width="200px" alt="">
+        <br>
         <a href="/api/auth/signout">
             <button type="button" class="btn btn-primary">
-                Sign out 🚩
+                Sign out
             </button>
         </a>
     
         <a href="/api/files">
             <button type="button" class="btn btn-primary">
-                home
+                Home
             </button>
         </a>
         <p>User id: <%= userId %>
@@ -37,14 +38,61 @@
                         <%= message.from %>
                     </td>
                     <td>
-                        <%= message.message %>
+                        <!--  URL FORMAT we will extract needed information from the s3 url
+                            https://new-bucket-file-to-access.s3.us-east-1.amazonaws.com/
+                            65c855f47ed15d6049dd6dcd/
+                            Mall_Customers.csv?
+                            X-Amz-Algorithm=AWS4-HMAC-SHA256&
+                            X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&
+                            X-Amz-Credential=AKIAZASA6KURLYUTYN6J%2F20240213%2Fus-east-1%2Fs3%2Faws4_request&
+                            X-Amz-Date=20240213T055401Z&
+                            X-Amz-Expires=60&
+                            X-Amz-Signature=cd2212a134dd48b31a4f8933dd62a55faba52656ef55ace8cbcb0174ebff76a1&
+                            X-Amz-SignedHeaders=host&
+                            x-id=GetObject%3C/a%3E -->
+                        <%
+                            const messageContent = message.message
+                            let displayText
+                            let downloadUrl
+                            let expired = false;
+                            if (messageContent.indexOf("https") >= 0) {
+                                const index = messageContent.indexOf("https")
+                                downloadUrl = messageContent.substring(index).split(" ")[0]
+
+                                // url parsing and extracting expiry timestamp info
+                                const downloadUrlParser = new URL(downloadUrl)
+                                const amz_expiry = downloadUrlParser.searchParams.get("X-Amz-Expires")
+                                let timestamp = downloadUrlParser.searchParams.get("X-Amz-Date")
+                                let formattedTimestamp = timestamp.slice(0,4) + "-" + timestamp.slice(4,6) + "-" + timestamp.slice(6,8) + "T" + timestamp.slice(9,11) + ":" + timestamp.slice(11,13) + ":" + timestamp.slice(13,15) + "Z";
+
+                                let date = new Date(formattedTimestamp);
+                                date.setSeconds(date.getSeconds()+ parseInt(amz_expiry))
+                                if (date > new Date()) {
+                                    expired = false
+                                } else {
+                                    expired = true
+                                }
+                            }
+                            displayText = "Here is the download link for shared file :"
+
+                        %>
+                            <% if (downloadUrl) {%>
+                                <%= displayText %>
+                                <a href="<%= downloadUrl %>" target="_blank">download</a>
+                                <% if (expired) {%>
+                                    <span class="expiry-wrapper">
+                                        <span class="expiry-tag">Expired</span>
+                                    </span>
+                                <% }%>
+                            <% } else {%>
+                                <%= message.message %>
+                            <% }%>
                     </td>
-                    <td><a class="btn btn-secondary" href="/api/files" target="_blank"><%= message.read ?  'unmark' : 'mark'%></a></td>
+                    <td><a class="btn btn-success" href="/api/user/message/<%= message._id %>"><%= message.read ?  'unmark' : 'mark'%></a></td>
                 </tr>
                 <% }) %>
         </tbody>
     </table>
-
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="/script.js"></script>

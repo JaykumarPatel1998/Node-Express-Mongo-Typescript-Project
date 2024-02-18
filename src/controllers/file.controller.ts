@@ -20,7 +20,7 @@ export const getFiles: RequestHandler = async (req: ExtendedRequest, res, next) 
         const files = await File.find({ userId: req.id }).lean().exec();
         for (let i = 0; i < files.length; i++) {
             const temp = files[i].urlExpiryDate?.getMilliseconds;
-            if (temp && (temp < Date.now)) {
+            if (temp && (temp >= Date.now)) {
                 const presignedUrl = await createPresignedUrlWithClient(files[i].bucket!, files[i].key!)
                 const date = new Date();
                 const seconds = date.getSeconds()
@@ -29,8 +29,8 @@ export const getFiles: RequestHandler = async (req: ExtendedRequest, res, next) 
             }
         }
         const user = await UserModel.findById(req.id);
-
-        return res.status(200).render(`index`, { userId: user?._id, files, messages: user?.messageArray });
+        const messagesNotRead = user?.messageArray.filter(message => message.read === false)
+        return res.status(200).render(`index`, { userId: user?._id, files, messages: messagesNotRead});
     } catch (error) {
         next(error)
     }
@@ -69,12 +69,10 @@ export const deleteFromStorageandDB: RequestHandler = async (req: ExtendedReques
         if (file) {
             await deleteFile(file.bucket, file.key!);
             await File.findByIdAndDelete(file._id);
+            return res.status(200).redirect("/api/files");
+        } else {
+            throw createHttpError(404, "File not found")
         }
-        const httpResponse = {
-            "message": "File deleted successfully"
-        }
-        res.status(200).send(httpResponse)
-        return;
     } catch (error) {
         next(error)
     }
@@ -90,11 +88,11 @@ export const shareFile: RequestHandler = async (req: ExtendedRequest, res, next)
 
         if (file && toUser) {
             const presignedUrl = await createPresignedUrlWithClient(file.bucket, file.key!, parseInt(expiry) * 60)
-            const date = new Date();
-            const seconds = date.getSeconds()
-            date.setSeconds(seconds + parseInt(expiry) * 60)
+            // const date = new Date();
+            // const seconds = date.getSeconds()
+            // date.setSeconds(seconds + parseInt(expiry) * 60)
             toUser.messageArray.push({
-                message: "file shared, download from the following url :" + "<a>" + presignedUrl + "</a>",
+                message: presignedUrl,
                 read: false,
                 from: req.id
             })
