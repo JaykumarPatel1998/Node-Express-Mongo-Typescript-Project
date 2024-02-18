@@ -10,6 +10,21 @@ notifications
 <img width="960" alt="notifications" src="https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/c0dda9b6-5e0f-4b19-a9f6-af1ea4ac030b">
 
 
+##system architecture
+
+#upload service
+![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/06cd7724-333f-4efe-a3d6-9a4fff84386c)
+
+#get files service
+![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/fee07b6f-9e85-4ccc-8768-05e9689a516c)
+
+#delete file service
+![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/ee1e35e2-49ad-4ad9-9c5d-0b0eb2b34f3b)
+
+#share file service
+![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/cc0d6586-e8ed-48aa-bb7e-3ee93151f162)
+
+
 Storage and Sharing Web App
 
 ## Overview
