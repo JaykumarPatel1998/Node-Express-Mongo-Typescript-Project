@@ -13,16 +13,20 @@ notifications
 ##system architecture
 
 #upload service
-![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/06cd7724-333f-4efe-a3d6-9a4fff84386c)
+<br>
+![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/946d389d-197a-4a17-a080-1e4433b082b4)
 
 #get files service
-![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/fee07b6f-9e85-4ccc-8768-05e9689a516c)
+<br>
+![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/4f4dc850-45c8-44f7-996d-f0c012557756)
 
 #delete file service
-![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/ee1e35e2-49ad-4ad9-9c5d-0b0eb2b34f3b)
+<br>
+![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/fc823790-3ec1-43af-acc0-ada5fc4d6230)
 
 #share file service
-![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/cc0d6586-e8ed-48aa-bb7e-3ee93151f162)
+<br>
+![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/4b270854-b7c9-41bb-841e-2e8c65d5371f)
 
 
 Storage and Sharing Web App
