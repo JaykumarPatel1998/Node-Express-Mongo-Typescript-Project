@@ -3,7 +3,7 @@ const namespace = document.getElementById("namespace")
 const parent = document.getElementById("parent")
 const folderForm = document.getElementById("folderForm")
 const shareForm = document.getElementById("shareForm")
-const linkshare = document.getElementsByClassName("share")[0]
+const deleteForm = document.getElementById("deleteForm")
 
 const deleteLink = document.querySelector('a.delete');
 deleteLink?.addEventListener('click', (event) => {
@@ -12,17 +12,19 @@ deleteLink?.addEventListener('click', (event) => {
     fetch(url, { method: 'DELETE' })
 });
 
-const toastTrigger = document.getElementById('liveToastBtn')
-const toastLiveExample = document.getElementById('liveToast')
-
-if (toastTrigger) {
-  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-  toastTrigger.addEventListener('click', () => {
-    toastBootstrap.show()
-  })
+function changeShareUrl(event) {
+  shareForm.setAttribute('action', event.target.getAttribute('data-shareurl'))
+  shareForm.setAttribute('method', "POST")
+}
+function changeDeleteUrl(event) {
+  deleteForm.setAttribute('action', event.target.getAttribute('data-shareurl'))
 }
 
-function changeUrl() {
-  shareForm.setAttribute('action', linkshare.getAttribute('href'))
-  shareForm.setAttribute('method', "POST")
+function deleteFile(event) {
+  event.preventDefault();
+  fetch(deleteForm.getAttribute('action'), {
+    method: 'DELETE'
+  }).then((response)=>{
+    location.reload()
+  })
 }

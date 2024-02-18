@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(rgba(157, 157, 157, 0.2), rgba(255, 255, 255, 0.4), rgba(157, 157, 157, 0.2), rgba(255, 255, 255, 0.4)) no-repeat;
+    /* background: linear-gradient(rgba(157, 157, 157, 0.2), rgba(255, 255, 255, 0.4), rgba(157, 157, 157, 0.2), rgba(255, 255, 255, 0.4)) no-repeat; */
     background-position: center center;
     background-size: cover;
     font-size: 16px;
@@ -33,4 +33,21 @@ body {
 
 .submit-button  {
     margin: 1rem;
+}
+
+#logo {
+    padding: 1rem;
+}
+
+.expiry-tag {
+    background-color: rgba(204, 49, 49, 0.65);
+    padding: 0.25rem;
+    padding-left: 1rem;
+    font-size: small;
+    text-align: end;
+}
+
+.expiry-wrapper {
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+    text-align: end;
 }

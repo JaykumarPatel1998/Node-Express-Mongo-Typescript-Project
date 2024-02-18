@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <title>SecureShare</title>
     <link rel="stylesheet" href="/assets/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -15,10 +16,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <b>DELETE ACTION</b>: ITEM HAS BEEN DELETED  
-                </div>
-                <div class="modal-footer">
-                    <a href=""><button type="button" class="btn btn-primary">OK</button></a>
+                    <form id="deleteForm" class="row g-3" action="/api/files" method="get">
+                        <div class="col-auto">
+                          <button type="submit" class="btn btn-primary mb-3" onclick="deleteFile(event)">DELETE</button>
+                        </div>
+                      </form>
                 </div>
             </div>
         </div>
@@ -52,7 +54,8 @@
     </div>
 
     <div class="header">
-        <h1>Welcome to Secure Drive</h1>
+        <img id="logo" src="/assets/logo.png" width="200px" alt="">
+        <br>
         <a href="/api/auth/signout">
             <button type="button" class="btn btn-primary">
                 Sign out
@@ -83,6 +86,11 @@
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td colspan="4">
+                    Upload new files
+                </td>
+            </tr>
             <% files?.forEach(file=> { %>
                 <tr>
                     <td>
@@ -93,11 +101,12 @@
                     </td>
                     <td><a class="button-links download" href="<%= file.fileUrl %>" target="_blank"><img
                                 src="/assets/download.png" alt="download"></a></td>
-                    <td><a type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                         class="button-links delete" href="/api/files/<%= file._id %>"><img src="/assets/delete.png"
-                                alt="delete"></a></td>
-                    <td><a type="button" data-bs-toggle="modal" data-bs-target="#shareModal" class="button-links share"
-                            href="/api/files/<%= file._id %>" onclick="changeUrl()"><img src="/assets/share.png" alt="share"></a></td>
+
+                    <td><input type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        class="btn btn-primary" data-shareurl="/api/files/<%= file._id %>" value="delete" onclick=changeDeleteUrl(event)></td>
+
+                    <td><input type="button" data-bs-toggle="modal" data-bs-target="#shareModal" class="btn btn-primary"
+                            data-shareurl="/api/files/<%= file._id %>" onclick=changeShareUrl(event) value="share"></td>
                 </tr>
                 <% }) %>
         </tbody>
@@ -120,3 +129,27 @@
 <script src="/script.js"></script>
 
 </html>
+
+<!-- 
+https://new-bucket-file-to-access.s3.us-east-1.amazonaws.com/
+65c855f47ed15d6049dd6dcd/Assignment04_Instructions.docx?
+X-Amz-Algorithm=AWS4-HMAC-SHA256&
+X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&
+X-Amz-Credential=AKIAZASA6KURLYUTYN6J%2F20240214%2Fus-east-1%2Fs3%2Faws4_request&
+X-Amz-Date=20240214T202800Z&
+X-Amz-Expires=60&
+X-Amz-Signature=32932f398653909421eccca1382f84966dc38955e92d93c953fc972f340b7b50&
+X-Amz-SignedHeaders=host&x-id=GetObject 
+
+https://new-bucket-file-to-access.s3.us-east-1.amazonaws.com/
+65c855f47ed15d6049dd6dcd/cloud.svg?
+X-Amz-Algorithm=AWS4-HMAC-SHA256&
+X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&
+X-Amz-Credential=AKIAZASA6KURLYUTYN6J%2F20240214%2Fus-east-1%2Fs3%2Faws4_request&
+X-Amz-Date=20240214T204708Z&
+X-Amz-Expires=120&
+X-Amz-Signature=dc46eb3a872760d2840cb962e11b87427c2e1bd9563ab74dcdf5cc9933ea44dd&
+X-Amz-SignedHeaders=host&
+x-id=GetObject
+-->
+
