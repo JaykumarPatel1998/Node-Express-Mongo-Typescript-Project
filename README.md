@@ -39,16 +39,16 @@ notifications
 
 # upload service
 <br>
-![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/946d389d-197a-4a17-a080-1e4433b082b4)
+<img src="https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/946d389d-197a-4a17-a080-1e4433b082b4">
 
 # get files service
 <br>
-![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/4f4dc850-45c8-44f7-996d-f0c012557756)
+<img src="https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/4f4dc850-45c8-44f7-996d-f0c012557756">
 
 # delete file service
 <br>
-![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/fc823790-3ec1-43af-acc0-ada5fc4d6230)
+<img src="https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/fc823790-3ec1-43af-acc0-ada5fc4d6230">
 
 # share file service
 <br>
-![image](https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/4b270854-b7c9-41bb-841e-2e8c65d5371f)
+<img src="https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project/assets/85047980/4b270854-b7c9-41bb-841e-2e8c65d5371f">
