@@ -6,7 +6,10 @@ body {
     margin: 0;
     padding: 2rem;
 }
-
+a {
+    text-decoration: none;
+    color: #5d5d5d;
+}
 .container-drop {
     max-width: 40%;
     padding: 1rem;
@@ -50,4 +53,8 @@ body {
 .expiry-wrapper {
     clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
     text-align: end;
+}
+
+.d-flex {
+    margin-top: 1rem;
 }

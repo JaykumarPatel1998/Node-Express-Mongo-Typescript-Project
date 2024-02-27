@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import fileRoutes from './routes/file.routes'
+import embeddingRoutes from './routes/embedding.routes'
 import authRoutes from './routes/auth.routes'
 import userRoutes from './routes/user.routes'
 import createHttpError, {isHttpError} from 'http-errors';
@@ -22,6 +23,7 @@ app.set('view engine', 'ejs');
 app.use("/api/auth", authRoutes)
 app.use("/api/user", userRoutes)
 app.use("/api/files", fileRoutes)
+app.use("/api/embeddings", embeddingRoutes)
 
 app.use((req, res, next) => {
     next(createHttpError(404, "Enpoint not found! 😥"))
