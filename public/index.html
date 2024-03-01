@@ -180,8 +180,123 @@
             max-width: 100%;
         }
 
+        #footer {
+            display: flex;
+        }
+
+        #footer li {
+            list-style: none;
+            margin: 0 80px;
+        }
+
+        #footer li a .fa-brands {
+            font-size: 40px;
+            color: #262626;
+            line-height: 80px;
+            transition: .5s;
+        }
+
+        #footer li a {
+            position: absolute;
+            display: block;
+            width: 80px;
+            height: 80px;
+            background-color: #fff;
+            text-align: center;
+            transform: perspective(1000px) rotate(-30deg) skew(25deg) translate(0, 0);
+            transition: .5s;
+            box-shadow: -20px 20px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #footer li a::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -20px;
+            height: 100%;
+            width: 20px;
+            background: #b1b1b1;
+            transition: .5s;
+            transform: rotate(0deg) skewY(-45deg);
+        }
+
+        #footer li a::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: -10px;
+            height: 20px;
+            width: 100%;
+            background: #b1b1b1;
+            transition: .5s;
+            transform: rotate(0deg) skewX(-45deg);
+        }
+
+        #footer li a:hover {
+            transform: perspective(1000px) rotate(-30deg) skew(25deg) translate(20px, -20px);
+            box-shadow: -50px 50px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        #footer li:hover .fa-brands {
+            color: #fff;
+        }
+
+        #footer li:hover:nth-child(1) a {
+            background-color: #3b5998;
+        }
+
+        #footer li:hover:nth-child(1) a::before {
+            background-color: #1f3f81;
+        }
+
+        #footer li:hover:nth-child(1) a::after {
+            background-color: #294888;
+        }
+
+
+
+        #footer li:hover:nth-child(2) a {
+            background-color: #07b2b8;
+        }
+
+        #footer li:hover:nth-child(2) a::before {
+            background-color: #079ca1;
+        }
+
+        #footer li:hover:nth-child(2) a::after {
+            background-color: #06979c;
+        }
+
+
+        #footer li:hover:nth-child(3) a {
+            background-color: #007bb6;
+        }
+
+        #footer li:hover:nth-child(3) a::before {
+            background-color: #046694;
+        }
+
+        #footer li:hover:nth-child(3) a::after {
+            background-color: #036491;
+        }
+
+
+
+        #footer li:hover:nth-child(4) a {
+            background-color: #00aced;
+        }
+
+        #footer li:hover:nth-child(4) a::before {
+            background-color: #038ec0;
+        }
+
+        #footer li:hover:nth-child(4) a::after {
+            background-color: #0491c5;
+        }
+
         /* End Landing Page */
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -200,7 +315,30 @@
             <div class="container">
                 <div class="info">
                     <h1>Secure Share</h1>
-                    <p>A safe and secure way to store and share files over the cloud. We also provide semantic search over your stored documents.</p>
+                    <p>A safe and secure way to store and share files over the cloud. We also provide semantic search
+                        for your stored documents.</p>
+                        <ul id="footer">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="fa-brands fa-facebook" ></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/JaykumarPatel1998/Node-Express-Mongo-Typescript-Project" target="_blank">
+                                    <i class="fa-brands fa-github"></i></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/jaykumarpatel1998/" target="_blank">
+                                    <i class="fa-brands fa-linkedin"></i></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/PatelJay_SDE" target="_blank">
+                                    <i class="fa-brands fa-twitter"></i></i>
+                                </a>
+                            </li>
+                        </ul>
                 </div>
                 <div class="image">
                     <img src="assets/svg.png">
@@ -208,7 +346,6 @@
             </div>
         </div>
     </div>
-    <!-- End Landing Page -->
 </body>
 
 </html>

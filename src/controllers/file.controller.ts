@@ -32,7 +32,7 @@ export const getFiles: RequestHandler = async (req: ExtendedRequest, res, next) 
         }
         const user = await UserModel.findById(req.id);
         const messagesNotRead = user?.messageArray.filter(message => message.read === false)
-        return res.status(200).render(`index`, { userId: user?._id, files, messages: messagesNotRead });
+        return res.status(200).render(`index`, { userId: user?.username, files, messages: messagesNotRead });
     } catch (error) {
         next(error)
     }
@@ -133,6 +133,9 @@ export const deleteFromStorageandDB: RequestHandler = async (req: ExtendedReques
         if (file) {
             await deleteFile(file.bucket, file.key!);
             await File.findByIdAndDelete(file._id);
+            await FileEmbeddings.deleteOne({
+                fileId : file._id
+            })
             return res.status(200).redirect("/api/files");
         } else {
             throw createHttpError(404, "File not found")

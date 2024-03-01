@@ -39,7 +39,7 @@
     </div>
 
     <form class="d-flex" action="/api/embeddings">
-        <input name="searchQuery" type="search" placeholder="searchQuery" aria-label="searchQuery">
+        <input name="searchQuery" type="search" placeholder="search query" aria-label="searchQuery">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 
@@ -48,7 +48,7 @@
             <tr>
                 <th>Filename</th>
                 <th>Download Link</th>
-                <th>Score</th>
+                <th>Match Score</th>
             </tr>
         </thead>
         <tbody>
@@ -56,8 +56,9 @@
                 <% files?.forEach(item=> { %>
                     <tr>
                         <td><%= item.filename %></td>
-                        <td><a href=<%=item.fileUrl%>>download</a></td>
-                        <td><%= item.score %></td>
+                        <td><a class="button-links download" href="<%= item.fileUrl %>" target="_blank"><img
+                            src="/assets/download.png" alt="download"></a></td>
+                        <td><%= (item.score * 100).toFixed(2) %> %</td>
                     </tr>
                     <% }) %>
             <%} else {%>
