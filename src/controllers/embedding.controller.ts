@@ -8,7 +8,6 @@ const uri = process.env.MONGO_URL!;
 
 const client = new MongoClient(uri);
 
-
 interface ExtendedRequest extends Request {
     id?: string;
 }
